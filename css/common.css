@@ -1,0 +1,46 @@
+html, body { background: #aaa; font: 14px arial, verdana, sans-serif; color: #444; padding: 0px; margin: 0px; }
+
+* { 
+	box-sizing: border-box; 
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.column { width: 1000px; margin: 0px auto; }
+
+.projects { height: 41px; width: 100%; background: #222; border-bottom: 1px solid #000; }
+
+	.projects ul { list-style: none; margin: 0px; padding: 0px; }
+	.projects ul li { display: inline-block; background: #2d2d2d; font-size: 20px; line-height: 20px; margin: 0px; padding: 0px; -webkit-transition: all 1s ease; }
+	.projects ul li.active { background: #444; padding-bottom: 2px; }
+	.projects ul li:hover { background: #444; }
+	.projects ul li.active:hover { background: #444; }
+	.projects a { text-decoration: none; color: #666; font-size: 14px; padding: 10px; display: block; }
+	.projects ul li.active a { color: #777; }
+	.projects ul li:hover a { color: #fff; }
+
+.project { width: 100%; }
+
+	.project .top { width: 100%; background: #444; border-top: 1px solid #555; border-bottom: 1px solid #333; padding: 20px; }
+
+		.project .top h1, .project .top p { font-weight: normal; color: #eee; padding: 10px; margin: 20px 0px 20px 0px; font-size: 32px; background: #555; display: inline-block; }
+		.project .top a { text-shadow: 1px 1px 2px rgba(0,0,0,.5); }
+		.project .top p2 { background: #66d; }
+		.project .top p { margin: 0px; color: #fff; background: #66d; display: inline-block; padding: 10px; }
+
+	.project .container { width: 100%; background: #ddd; border-top: 1px solid #fff; }
+
+.text { padding: 40px; padding-bottom: 0px; padding-left: 0px; } 
+.hero { float: right; width: 680px; padding: 40px; margin: 40px 0px 40px 40px; background: #ccc; }
+.hero h2, .text h2:first-child { margin-top: 0px; } 
+.hero h2 { color: #888; }
+.hero p:last-child { margin-bottom: 0px; }
+
+h1, h2 { font-size: 40px; margin: 20px; margin-left: 0px; color: #44b; padding: 0px; }
+h2 { font-size: 20px; }
+button, .btn { cursor: pointer; box-shadow: 0px 0px 10px rgba(0,0,0,0.4); margin: 20px 0px 0px 0px; color: #fff; background: #66d; display: inline-block; padding: 10px; text-decoration: none; border: none; }
+.btn-grey { background: #888; }
+.shadowinset { text-shadow: 1px 1px 1px rgba(255,255,255,0.3), -1px -1px 1px rgba(0,0,0,0.4); }
+code { background: #ccc; padding: 2px; font-family: monospace; }
+
+.clearfix { clear: both; visibility: hidden; font-size: 1px; }
