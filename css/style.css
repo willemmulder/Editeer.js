@@ -1,1 +1,13 @@
 /* custom CSS */
+.slidethumbnail { display: inline-block; width: 100px; height: 100px; font-size: 60px; text-align: center; line-height: 60px; vertical-align: center; color: #fff; padding: 20px; background: #555; }
+.slidethumbnail.addslide { background: #484848; color: #ccc; cursor: pointer; }
+.slidethumbnail.hovered { background: #676767; }
+.slidethumbnail.active { border-bottom: 5px solid #777; }
+
+.viewport { width: 1000px; position: fixed; bottom: 20px; top: 200px; overflow: hidden; box-shadow: 0px 0px 5px rgba(0,0,0,0.5); }
+
+.slide { width: 300px; height: 300px; position: absolute; padding: 50px; }
+.slide.hovered { background: rgba(0,0,0,0.1); }
+.slide h1 { font-size: 50px; margin: 0px; padding: 0px; }
+
+.slidethumbnail, .slide { -webkit-transition: all 0.2s ease; cursor: pointer;  }
