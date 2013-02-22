@@ -376,8 +376,15 @@
 				if (options.cachePositions) {
 					cachePositions();
 				}
+			},
+			getPositionAtCanvas : function(opts) {
+				if (opts.positionInViewport) {
+					// Multiply the position in the viewport with the matrix of the canvas
+					var inverseMatrixString = getInverseMatrixString(canvas);
+					console.log(inverseMatrixString);
+					return opts.positionInViewport;
+				}
 			}
-			
 		};
 	}
 	
@@ -653,7 +660,10 @@
 	}
 	
 	function processElementTransforms(elm) {
-		// Copy the inverse of the element transforms to the canvas
+		return getInverseMatrixString(elm);
+	}
+
+	function getInverseMatrixString(elm) {
 		var matrix = "";
 		for(var prefixID in prefixes) {
 			var prefix = prefixes[prefixID];
