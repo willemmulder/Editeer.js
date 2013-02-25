@@ -111,13 +111,13 @@ $(function() {
 	}
 
 	function makeSlidesDraggable() {
-		slideList = $(".viewport").html5dragdrop({
+		slideList = $(".viewport").parent().html5dragdrop({
 			"draggables" : ".slide",
-			"droppables" : ".canvas",
+			"droppables" : ".viewport",
 			onDragStart : function(draggedElement, details) {
-				draggedElement.animate({
+				/*draggedElement.animate({
 					opacity: 0.2
-				});
+				});*/
 			},
 			onDragCancelled : function(draggedElement, details) {
 				draggedElement.animate({
@@ -128,7 +128,7 @@ $(function() {
 				draggedElement.animate({
 					opacity: 1
 				});
-				placeAtList(draggedElement, details.currentlyHoveredElement, details);
+				placeAtCanvas(draggedElement, details.currentlyHoveredElement, details);
 			},
 			onHoverDroppable : function(draggedElement,  hoveredDroppable, details) {
 				placeAtCanvas(draggedElement, details.currentlyHoveredElement, details);
@@ -138,8 +138,8 @@ $(function() {
 			}
 		});
 		function placeAtCanvas(elementToPlace, target, details) {
-			console.log(slideList.getPositionAtCanvas({positionInViewport:{x:1,y:1}}));
-			target.css("left", details.mouseLocation.inDroppable.x).css("top", details.mouseLocation.inDroppable.y);
+			var position = presentation.getPositionAtCanvas({positionInViewport:{x:details.mouseLocation.inDroppable.x,y:details.mouseLocation.inDroppable.y}});
+			elementToPlace.css("left", position.x).css("top", position.y);
 		}
 	}
 
