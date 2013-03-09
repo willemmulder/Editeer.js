@@ -388,37 +388,22 @@
 				if (opts.positionInViewport) {
 					// Multiply the position in the viewport with the matrix of the canvas
 					var inverseMatrixString = getInverseMatrixString(canvas);
-					// Add element, and retrieve the position
-					/*
-					var $elm = $("<div style='width:5px;height:5px;position:absolute; background: #0000ff;" +
-						"left:"+ opts.positionInViewport.x + "px; " +
-						"top:" + opts.positionInViewport.y + "px; " +
-						"'>");
-					// Set proper transformOrigin
-					var transformOrigin = getTransformOrigin(canvas);
-					var transformOriginX = parseInt(transformOrigin.x, 10) - opts.positionInViewport.x + "px"
-					var transformOriginY = parseInt(transformOrigin.y, 10) - opts.positionInViewport.y + "px"
-					setTransformOrigin($elm, transformOriginX, transformOriginY);
-					*/
+					var transformOriginCanvas = getTransformOrigin(canvas);
+					var distanceFromOriginX = opts.positionInViewport.x - parseInt(transformOriginCanvas.x, 10);
+					var distanceFromOriginY = opts.positionInViewport.y - parseInt(transformOriginCanvas.y, 10);
+					
 					// Get points
+					var inverseMatrix = getMatrixFromMatrixString(inverseMatrixString);
+					//inverseMatrix[0][2] -= parseInt(transformOrigin.x, 10);
+					//inverseMatrix[1][2] -= parseInt(transformOrigin.y, 10);
 					var finalPosition = matrixMultiply(
-						getMatrixFromMatrixString(inverseMatrixString),
+						inverseMatrix,
 						[
-							[opts.positionInViewport.x],
-							[opts.positionInViewport.y],
+							[distanceFromOriginX],
+							[distanceFromOriginY],
 							[1]
 						]
 					);
-					// Transform its location
-					/*
-					setTransformation($elm, inverseMatrixString);
-					canvas.append($elm);
-					// Get the final, transformed location
-					var position = {x:$elm.position().left, y:$elm.position().top};
-					var offset = {x:$elm.offset().left-canvas.offset().left, y:$elm.offset().top-canvas.offset().top};
-					setTimeout(function() {
-						$elm.remove();
-					},1000);*/
 					return {x: finalPosition[0][0], y: finalPosition[1][0]};
 				}
 			}

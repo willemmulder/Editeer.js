@@ -138,7 +138,11 @@ $(function() {
 			}
 		});
 		function placeAtCanvas(elementToPlace, target, details) {
-			var position = presentation.getPositionAtCanvas({positionInViewport:{x:details.mouseLocation.inDroppable.x,y:details.mouseLocation.inDroppable.y}});
+			var position = presentation.getPositionAtCanvas({
+				positionInViewport:{
+					x:details.mouseLocation.inDroppable.x,
+					y:details.mouseLocation.inDroppable.y}
+			});
 			elementToPlace.css("left", position.x).css("top", position.y);
 		}
 	}
