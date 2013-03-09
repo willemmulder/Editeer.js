@@ -15,4 +15,4 @@
 .slide.hovered { background: rgba(0,0,0,0.1); }
 .slide h1 { font-size: 50px; margin: 0px; padding: 0px; }
 
-.slidethumbnail, .slide { -webkit-transition: all 0.2s ease; cursor: pointer;  }
+.slidethumbnail { -webkit-transition: all 0.2s ease; cursor: pointer;  }
