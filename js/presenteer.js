@@ -389,16 +389,14 @@
 					// Multiply the position in the viewport with the matrix of the canvas
 					var inverseMatrixString = getInverseMatrixString(canvas);
 					var transformOriginCanvas = getTransformOrigin(canvas);
-					// TODO: make the transformOrigin of the point equal to the transformorigin of the canvas
-					// Take the point of transform-origin at the canvas, and transform it with the canvas-transformation
-					// That point is the new origin point? If we calculate from there, we arrive at the original origin-point, right?
+					// Transform-origin of canvas remains the same regardless of what transformation is applied
+					// I.e. if it is 150,150 then it will remain 150,150 if a "scale(0.5) translate(100,100)" is applied
+					// So if we assume that the canvas is at 0,0 in the viewport, we can calculate the distance from our point to the transform-origin
 					var distanceFromOriginX = opts.positionInViewport.x - parseInt(transformOriginCanvas.x, 10);
 					var distanceFromOriginY = opts.positionInViewport.y - parseInt(transformOriginCanvas.y, 10);
 					
-					// Get points
+					// Apply the inverse matrix to our point
 					var inverseMatrix = getMatrixFromMatrixString(inverseMatrixString);
-					//inverseMatrix[0][2] -= parseInt(transformOrigin.x, 10);
-					//inverseMatrix[1][2] -= parseInt(transformOrigin.y, 10);
 					var finalPosition = matrixMultiply(
 						inverseMatrix,
 						[
@@ -407,6 +405,9 @@
 							[1]
 						]
 					);
+					// Finally add  the transform-origin again to return to the original reference axis
+					finalPosition[0][0] += parseInt(transformOriginCanvas.x, 10);
+					finalPosition[1][0] += parseInt(transformOriginCanvas.y, 10);
 					return {x: finalPosition[0][0], y: finalPosition[1][0]};
 				}
 			}
