@@ -115,6 +115,7 @@ $(function() {
 			"draggables" : ".slide",
 			"droppables" : ".viewport",
 			onDragStart : function(draggedElement, details) {
+				draggedElement.data("dragStartDetails",details);
 				/*draggedElement.animate({
 					opacity: 0.2
 				});*/
@@ -128,20 +129,23 @@ $(function() {
 				draggedElement.animate({
 					opacity: 1
 				});
-				placeAtCanvas(draggedElement, details.currentlyHoveredElement, details);
+				var dragStartDetails = draggedElement.data("dragStartDetails");
+				placeAtCanvas(draggedElement, details.currentlyHoveredElement, details, dragStartDetails);
 			},
 			onHoverDroppable : function(draggedElement,  hoveredDroppable, details) {
-				placeAtCanvas(draggedElement, details.currentlyHoveredElement, details);
+				var dragStartDetails = draggedElement.data("dragStartDetails");
+				placeAtCanvas(draggedElement, details.currentlyHoveredElement, details, dragStartDetails);
 			},
 			getGhostingContent : function() {
 				return $("<div>");
 			}
 		});
-		function placeAtCanvas(elementToPlace, target, details) {
+		function placeAtCanvas(elementToPlace, target, details, dragStartDetails) {
 			var position = presentation.getPositionAtCanvas({
-				positionInViewport:{
-					x:details.mouseLocation.inDroppable.x,
-					y:details.mouseLocation.inDroppable.y}
+				positionInViewport : {
+					x:details.mouseLocation.inDroppable.x - dragStartDetails.mouseLocation.inDraggable.x,
+					y:details.mouseLocation.inDroppable.y - dragStartDetails.mouseLocation.inDraggable.y
+				}
 			});
 			elementToPlace.css("left", position.x).css("top", position.y);
 		}
